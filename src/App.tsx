@@ -1,5 +1,5 @@
 import * as React from 'react'
-function App(): void {
+function App(): any {
   return (
     <div className="text-center font-sans">
       <header className="bg-gray-600 m-6 p-6 rounded shadow-lg">

@@ -27,7 +27,8 @@ module.exports = {
   plugins: ['react', 'jest'],
   rules: {
     'jest/no-identical-title': 'error',
-    'jest/valid-expect': 'error'
+    'jest/valid-expect': 'error',
+    '@typescript-eslint/no-explicit-any': 'off'
   },
   settings: {
     react: {

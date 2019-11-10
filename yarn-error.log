@@ -24,8 +24,8 @@ npm manifest:
       "start": "webpack-dev-server --config ./webpack.config.js --mode development",
       "build": "webpack --config ./webpack.config.js --mode production",
       "test": "jest",
-      "lint": "eslint --fix --ext .tsx,.js,.jsx src test",
-      "lint-fix": "eslint --fix --ext .tsx,.js,.jsx src test"
+      "lint": "eslint --fix --ext .tsx,.js,.jsx src tests",
+      "lint-fix": "eslint --fix --ext .tsx,.js,.jsx src tests"
     },
     "devDependencies": {
       "@babel/core": "^7.6.4",
@@ -43,6 +43,7 @@ npm manifest:
       "css-loader": "^3.2.0",
       "eslint": "^6.6.0",
       "eslint-config-prettier": "^6.5.0",
+      "eslint-plugin-jest": "^23.0.3",
       "eslint-plugin-prettier": "^3.1.1",
       "eslint-plugin-react": "^7.16.0",
       "html-webpack-plugin": "^3.2.0",
@@ -1059,7 +1060,7 @@ Lockfile:
       regexpp "^2.0.1"
       tsutils "^3.17.1"
   
-  "@typescript-eslint/experimental-utils@2.6.1":
+  "@typescript-eslint/experimental-utils@2.6.1", "@typescript-eslint/experimental-utils@^2.5.0":
     version "2.6.1"
     resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.6.1.tgz#eddaca17a399ebf93a8628923233b4f93793acfd"
     dependencies:
@@ -3184,6 +3185,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.5.0.tgz#aaf9a495e2a816865e541bfdbb73a65cc162b3eb"
     dependencies:
       get-stdin "^6.0.0"
+  
+  eslint-plugin-jest@^23.0.3:
+    version "23.0.3"
+    resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.0.3.tgz#d3f157f7791f97713372c13259ba1dfc436eb4c1"
+    dependencies:
+      "@typescript-eslint/experimental-utils" "^2.5.0"
   
   eslint-plugin-prettier@^3.1.1:
     version "3.1.1"
@@ -9066,7 +9073,7 @@ Trace:
   Error: Command failed.
   Exit code: 2
   Command: sh
-  Arguments: -c eslint --fix --ext .tsx,.js,.jsx src test
+  Arguments: -c eslint --fix --ext .tsx,.js,.jsx src tests
   Directory: /home/georgius/Projects/test/react/react-typescript-webpack-tailwind-boilerplate
   Output:
   
