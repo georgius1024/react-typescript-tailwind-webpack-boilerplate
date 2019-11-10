@@ -7,3 +7,6 @@
 - **Webpack** is a module bundler capable of transforming, bundling, or packaging just about any resource or asset. https://webpack.js.org/
 
 **!** Edit `tailwind.config.js` to style up aplication theme. When done, do not forget `yarn build:style` to recompile app styles
+
+run `yarn start` to open app in dev server
+run `yarn build` to build app
