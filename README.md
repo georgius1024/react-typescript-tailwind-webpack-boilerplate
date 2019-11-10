@@ -1,4 +1,4 @@
-# React + TypeScript + TailwindCSS + PurgeCSS + Weback boilerplate project
+# React + TypeScript + TailwindCSS + PurgeCSS + Webpack boilerplate project
 
 - **React** is a JavaScript library for building user interfaces https://reactjs.org/
 - **TypeScript** is a typed superset of JavaScript that compiles to plain JavaScript. https://www.typescriptlang.org/
