@@ -9,5 +9,7 @@
 **!** Edit `tailwind.config.js` to style up aplication theme. When done, do not forget `yarn build:style` to recompile app styles
 
 run `yarn start` to open app in dev server
+
 run `yarn build` to build app
+
 run `yarn test` to run unit tests
