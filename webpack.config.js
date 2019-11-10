@@ -1,106 +1,11 @@
-const path = require('path')
-const glob = require('glob')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-
-const paths = {
-  src: path.join(__dirname, 'src')
-}
-
+const merge = require('webpack-merge')
+const common = require('./webpack-common.config')
+const dev = require('./webpack-dev.config')
+const prod = require('./webpack-prod.config')
 module.exports = (env, arg) => {
-  const production = arg.mode === 'production'
-  return {
-    entry: {
-      index: './src/index.tsx',
-      vendor: ['react', 'react-dom']
-    },
-    output: {
-      path: __dirname + '/dist',
-      publicPath: '/',
-      filename: production ? '[name].[hash].js' : '[name].js'
-    },
-    module: {
-      rules: [
-        {
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          use: ['babel-loader']
-        },
-        {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          use: ['ts-loader']
-        },
-        {
-          test: /\.css$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: !production
-              }
-            },
-            'css-loader',
-            'postcss-loader'
-          ]
-        }
-      ]
-    },
-    resolve: {
-      extensions: ['*', '.js', '.ts', '.tsx']
-    },
-    plugins: [
-      new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, './public', 'index.html'),
-        fileName: './index.html',
-        inject: true,
-        hash: true
-      }),
-      new MiniCssExtractPlugin({
-        filename: production ? '[name].[contenthash].css' : '[name].css',
-        chunkFilename: production ? '[id].[contenthash].css' : '[id].css',
-        ignoreOrder: false
-      }),
-      new PurgecssPlugin({
-        paths: glob.sync(`${paths.src}/**/*`, { nodir: true })
-      })
-    ],
-    optimization: {
-      minimizer: [new OptimizeCSSAssetsPlugin(), new UglifyJsPlugin()],
-      splitChunks: {
-        chunks: 'async',
-        minChunks: 1,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-        automaticNameDelimiter: '~',
-        name: true,
-        cacheGroups: {
-          vendors: {
-            chunks: 'initial',
-            name: 'vendor',
-            test: 'vendor',
-            enforce: true
-          },
-          styles: {
-            name: 'styles',
-            test: /\.css$/,
-            chunks: 'all',
-            enforce: true
-          }
-        }
-      }
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-      contentBase: './public',
-      publicPath: '/',
-      hot: true,
-      open: true
-    }
+  if (arg.mode === 'production') {
+    return merge(common, prod)
+  } else {
+    return merge(common, dev)
   }
 }
