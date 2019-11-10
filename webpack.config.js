@@ -15,7 +15,7 @@ module.exports = (env, arg) => {
   const production = arg.mode === 'production'
   return {
     entry: {
-      index: './src/index.js',
+      index: './src/index.tsx',
       vendor: ['react', 'react-dom']
     },
     output: {
@@ -29,6 +29,11 @@ module.exports = (env, arg) => {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           use: ['babel-loader']
+        },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: ['ts-loader']
         },
         {
           test: /\.css$/,
@@ -46,7 +51,7 @@ module.exports = (env, arg) => {
       ]
     },
     resolve: {
-      extensions: ['*', '.js']
+      extensions: ['*', '.js', '.ts', '.tsx']
     },
     plugins: [
       new CleanWebpackPlugin(),
@@ -62,7 +67,7 @@ module.exports = (env, arg) => {
         ignoreOrder: false
       }),
       new PurgecssPlugin({
-         paths: glob.sync(`${paths.src}/**/*`, { nodir: true })
+        paths: glob.sync(`${paths.src}/**/*`, { nodir: true })
       })
     ],
     optimization: {
@@ -73,7 +78,6 @@ module.exports = (env, arg) => {
         maxAsyncRequests: 5,
         maxInitialRequests: 3,
         automaticNameDelimiter: '~',
-        automaticNameMaxLength: 30,
         name: true,
         cacheGroups: {
           vendors: {
@@ -91,6 +95,7 @@ module.exports = (env, arg) => {
         }
       }
     },
+    devtool: 'inline-source-map',
     devServer: {
       contentBase: './public',
       publicPath: '/',

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 function App() {
   return (
     <div className="text-center font-sans">
@@ -6,7 +6,7 @@ function App() {
         <h1 className="text-white text-3xl">This is a React app</h1>
       </header>
       <p className="text-base">
-        To get started, edit <code>src/App.js</code> and save to reload.
+        This app has been build using React & TypeScript
       </p>
     </div>
   )
